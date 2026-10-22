@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenzin Dundul — Graphic Designer & Digital Marketer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#0071e3',
+                            blueHover: '#0077ed',
+                            lightBg: '#f5f5f7',
+                            lightCard: '#ffffff',
+                            lightText: '#1d1d1f',
+                            lightSubtext: '#86868b',
+                            lightBorder: 'rgba(0, 0, 0, 0.08)',
+                            darkBg: '#000000',
+                            darkCard: '#161617',
+                            darkText: '#f5f5f7',
+                            darkSubtext: '#86868b',
+                            darkBorder: 'rgba(255, 255, 255, 0.12)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: [
+                            '-apple-system', 
+                            'BlinkMacSystemFont', 
+                            '"SF Pro Text"', 
+                            '"SF Pro Display"', 
+                            '"Helvetica Neue"', 
+                            'Inter', 
+                            'sans-serif'
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Apple-style translucent glass navigation */
+        .apple-glass {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .dark .apple-glass {
+            background: rgba(22, 22, 23, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Apple frosted card style */
+        .apple-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dark .apple-card {
+            background-color: #161617;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.08);
+        }
+        .dark .apple-card:hover {
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Prevent Layout Flicker during Theme Init */
+        html {
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(134, 134, 139, 0.3);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(134, 134, 139, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-apple-lightBg dark:bg-apple-darkBg text-apple-lightText dark:text-apple-darkText font-sans antialiased selection:bg-apple-blue selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- FLOATING APPLE GLASS HEADER NAV -->
+    <header class="fixed top-0 inset-x-0 z-50 apple-glass transition-colors">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            
+            <!-- Brand Mark -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-apple-lightText dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs tracking-tight group-hover:scale-105 transition transform">
+                    TD
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-semibold text-sm tracking-tight">Tenzin Dundul</span>
+                    <span class="text-[10px] text-apple-lightSubtext dark:text-apple-darkSubtext hidden sm:inline">Design & Marketing</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-7 text-xs font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">
+                <a href="#about" class="hover:text-apple-lightText dark:hover:text-white transition-colors">About</a>
+                <a href="#services" class="hover:text-apple-lightText dark:hover:text-white transition-colors">Services</a>
+                <a href="#portfolio" class="hover:text-apple-lightText dark:hover:text-white transition-colors">Work</a>
+                <a href="#resume" class="hover:text-apple-lightText dark:hover:text-white transition-colors">Resume</a>
+                <a href="#articles" class="hover:text-apple-lightText dark:hover:text-white transition-colors">Articles</a>
+                <a href="#contact" class="hover:text-apple-lightText dark:hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions & Theme Toggle -->
+            <div class="flex items-center space-x-2">
+                <!-- Functional Dark/Light Mode Switcher -->
+                <button id="themeToggleBtn" aria-label="Toggle Theme" class="w-8 h-8 rounded-full flex items-center justify-center text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-lightText dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition">
+                    <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
+                </button>
+
+                <!-- Action Button -->
+                <a href="#contact" class="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-xs font-medium transition shadow-sm">
+                    Get in Touch
+                </a>
+
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-apple-lightText dark:text-white">
+                    <i class="fa-solid fa-bars text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-apple-lightBorder dark:border-apple-darkBorder bg-apple-lightBg dark:bg-apple-darkBg px-6 py-5 flex-col space-y-4 text-sm font-medium">
+            <a href="#about" class="mobile-link text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-blue">About Me</a>
+            <a href="#services" class="mobile-link text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-blue">Services</a>
+            <a href="#portfolio" class="mobile-link text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-blue">Portfolio Work</a>
+            <a href="#resume" class="mobile-link text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-blue">Experience & Education</a>
+            <a href="#articles" class="mobile-link text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-blue">Articles</a>
+            <a href="#contact" class="mobile-link text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-blue">Contact</a>
+            <div class="pt-2">
+                <a href="#contact" class="w-full text-center py-2.5 rounded-xl bg-apple-blue text-white text-xs font-semibold block">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 space-y-24 w-full">
+
+        <!-- HERO / ABOUT SECTION -->
+        <section id="about" class="pt-6 sm:pt-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Hero Left Typography -->
+                <div class="lg:col-span-8 space-y-6 text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-apple-lightText/5 dark:bg-white/10 text-xs font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                        <span>Based in Boudha, Kathmandu • Origin: Dolpo</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-apple-lightText dark:text-white leading-[1.15]">
+                        Tenzin Dundul.
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl font-normal text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                        Graphic Designer & Digital Marketer crafting clean brand identities, social media campaigns, and print collateral.
+                    </p>
+
+                    <p class="text-sm sm:text-base text-apple-lightSubtext dark:text-apple-darkSubtext max-w-2xl leading-relaxed">
+                        Passionate about combining functional design with clear marketing strategy. From high-impact flex prints and brand guidelines to digital engagement for leading hospitality and education brands in Kathmandu.
+                    </p>
+
+                    <!-- Contact & Social Badges -->
+                    <div class="pt-2 flex flex-wrap items-center gap-4 text-xs font-medium">
+                        <a href="mailto:email@tenzindundul.com.np" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white transition">
+                            <i class="fa-regular fa-envelope"></i>
+                            <span>email@tenzindundul.com.np</span>
+                        </a>
+
+                        <div class="flex items-center space-x-2 text-apple-lightSubtext dark:text-apple-darkSubtext">
+                            <a href="https://facebook.com/tenssi10" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:text-apple-blue transition" title="Facebook">
+                                <i class="fa-brands fa-facebook-f text-xs"></i>
+                            </a>
+                            <a href="https://twitter.com/tenzindundul" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:text-apple-blue transition" title="Twitter / X">
+                                <i class="fa-brands fa-x-twitter text-xs"></i>
+                            </a>
+                            <a href="https://instagram.com/tenzindundul" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:text-apple-blue transition" title="Instagram">
+                                <i class="fa-brands fa-instagram text-xs"></i>
+                            </a>
+                            <a href="https://wa.me/9779762285689" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:text-emerald-500 transition" title="WhatsApp">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Portrait Card -->
+                <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                    <div class="w-full max-w-xs apple-card rounded-3xl p-3 space-y-3">
+                        <div class="aspect-square w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Tenzin Dundul" class="w-full h-full object-cover">
+                        </div>
+                        <div class="px-2 py-1">
+                            <p class="font-semibold text-sm text-apple-lightText dark:text-white">Tenzin Dundul</p>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">BSc CS Graduate & Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CORE SERVICES ("WHAT I'M DOING") -->
+        <section id="services" class="space-y-6">
+            <div class="space-y-1">
+                <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Expertise</p>
+                <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">What I'm Doing</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                
+                <!-- Service 1 -->
+                <div class="apple-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-apple-blue/10 text-apple-blue flex items-center justify-center text-lg font-semibold">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-base font-semibold">Graphic Design & Print Media</h3>
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                        Logos, brand visual identities, flex printing banners, business cards, brochures, and event posters crafted with high precision.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="apple-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg font-semibold">
+                        <i class="fa-solid fa-hashtag"></i>
+                    </div>
+                    <h3 class="text-base font-semibold">Social Media Management</h3>
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                        End-to-end content scheduling, creative feed designs, audience engagement, and campaign execution for hospitality & local brands.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="apple-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-semibold">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-base font-semibold">Content Strategy & Planning</h3>
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                        Purposeful content calendars, copy curation, promotional storytelling, and visual alignment tailored to business growth goals.
+                    </p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="apple-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg font-semibold">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-base font-semibold">Digital Marketing Consultation</h3>
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                        Targeted advertising campaigns on Meta Ads, performance tracking, local brand positioning, and audience conversion optimization.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SHOWCASE WITH FILTER & LIGHTBOX -->
+        <section id="portfolio" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div class="space-y-1">
+                    <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Showcase</p>
+                    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Featured Portfolio</h2>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-1.5 p-1 rounded-2xl bg-black/5 dark:bg-white/10 text-xs font-medium" id="portfolioFilters">
+                    <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-xl transition bg-white dark:bg-apple-darkCard text-apple-lightText dark:text-white shadow-sm">All</button>
+                    <button data-filter="Branding" class="filter-btn px-3.5 py-1.5 rounded-xl transition text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-lightText dark:hover:text-white">Branding</button>
+                    <button data-filter="Social Media" class="filter-btn px-3.5 py-1.5 rounded-xl transition text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-lightText dark:hover:text-white">Social Media</button>
+                    <button data-filter="Print Media" class="filter-btn px-3.5 py-1.5 rounded-xl transition text-apple-lightSubtext dark:text-apple-darkSubtext hover:text-apple-lightText dark:hover:text-white">Print Media</button>
+                </div>
+            </div>
+
+            <!-- Grid Container -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+                <!-- Javascript populated cards -->
+            </div>
+        </section>
+
+        <!-- SKILLS & PROFICIENCY -->
+        <section class="space-y-6">
+            <div class="space-y-1">
+                <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Proficiency</p>
+                <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Skills & Software</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Technical Skills & Progress -->
+                <div class="apple-card p-6 rounded-3xl space-y-5">
+                    <h3 class="text-sm font-semibold text-apple-lightSubtext dark:text-apple-darkSubtext uppercase tracking-wider">Core Capabilities</h3>
+                    
+                    <div class="space-y-4 text-xs font-medium">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between">
+                                <span>Graphic Design (Print & Digital)</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-apple-blue rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between">
+                                <span>IT & Computer Science Background</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-apple-blue rounded-full" style="width: 80%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between">
+                                <span>Digital Marketing & Meta Ads</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-apple-blue rounded-full" style="width: 70%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between">
+                                <span>Content Strategy & Curation</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-apple-blue rounded-full" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Tool Matrix -->
+                <div class="apple-card p-6 rounded-3xl space-y-4">
+                    <h3 class="text-sm font-semibold text-apple-lightSubtext dark:text-apple-darkSubtext uppercase tracking-wider">Software Stack</h3>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-medium">
+                        <div class="p-3 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center gap-2.5">
+                            <i class="fa-solid fa-image text-blue-500"></i>
+                            <span>Photoshop</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center gap-2.5">
+                            <i class="fa-solid fa-pen-nib text-amber-500"></i>
+                            <span>Illustrator</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center gap-2.5">
+                            <i class="fa-solid fa-film text-purple-500"></i>
+                            <span>Premiere Pro</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center gap-2.5">
+                            <i class="fa-brands fa-figma text-pink-500"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center gap-2.5">
+                            <i class="fa-solid fa-palette text-cyan-500"></i>
+                            <span>Canva</span>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center gap-2.5">
+                            <i class="fa-brands fa-meta text-blue-600"></i>
+                            <span>Meta Suite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESUME: EXPERIENCE & EDUCATION TIMELINE -->
+        <section id="resume" class="space-y-6">
+            <div class="space-y-1">
+                <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Background</p>
+                <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Experience & Education</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Experience -->
+                <div class="apple-card p-6 sm:p-8 rounded-3xl space-y-6">
+                    <h3 class="text-lg font-semibold flex items-center gap-2 text-apple-lightText dark:text-white">
+                        <i class="fa-solid fa-briefcase text-apple-blue text-sm"></i>
+                        <span>Experience</span>
+                    </h3>
+
+                    <div class="space-y-6 border-l border-black/10 dark:border-white/10 pl-5">
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-blue"></span>
+                            <span class="text-[11px] font-semibold text-apple-blue uppercase">Present</span>
+                            <h4 class="text-sm font-semibold">Freelance Graphic Designer & Brand Consultant</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Independent • Kathmandu & Remote</p>
+                        </div>
+
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-lightSubtext dark:bg-apple-darkSubtext"></span>
+                            <span class="text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">2024 — 2025</span>
+                            <h4 class="text-sm font-semibold">Graphic Designer</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Lavie Hospitality Group</p>
+                        </div>
+
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-lightSubtext dark:bg-apple-darkSubtext"></span>
+                            <span class="text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">2023 — Present</span>
+                            <h4 class="text-sm font-semibold">Digital Marketing Manager</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Ama Bakery & Ama Coffee School</p>
+                        </div>
+
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-lightSubtext dark:bg-apple-darkSubtext"></span>
+                            <span class="text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">2022 — 2023</span>
+                            <h4 class="text-sm font-semibold">Graphic Designer & Marketing Manager</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Utpala Cafe • Boudha</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="apple-card p-6 sm:p-8 rounded-3xl space-y-6">
+                    <h3 class="text-lg font-semibold flex items-center gap-2 text-apple-lightText dark:text-white">
+                        <i class="fa-solid fa-graduation-cap text-apple-blue text-sm"></i>
+                        <span>Education</span>
+                    </h3>
+
+                    <div class="space-y-6 border-l border-black/10 dark:border-white/10 pl-5">
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-blue"></span>
+                            <span class="text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">2022 — 2025</span>
+                            <h4 class="text-sm font-semibold">BSc Computer Science</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Texas College of Management and IT</p>
+                        </div>
+
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-lightSubtext dark:bg-apple-darkSubtext"></span>
+                            <span class="text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">2020 — 2022</span>
+                            <h4 class="text-sm font-semibold">+2 Management (Computer Science)</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Texas International College</p>
+                        </div>
+
+                        <div class="relative space-y-1">
+                            <span class="absolute -left-[26px] top-1.5 w-2.5 h-2.5 rounded-full bg-apple-lightSubtext dark:bg-apple-darkSubtext"></span>
+                            <span class="text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">2015 — 2020</span>
+                            <h4 class="text-sm font-semibold">School Leaving Certificate (SLC)</h4>
+                            <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Srongtsen Bhrikuti Boarding High School</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BRANDS WORKED WITH -->
+        <section class="space-y-4 text-center">
+            <p class="text-xs font-semibold text-apple-lightSubtext dark:text-apple-darkSubtext uppercase tracking-wider">Collaborations & Brand Partners</p>
+            <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 opacity-80 text-xs font-semibold">
+                <span class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5">LaVie Hospitality</span>
+                <span class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5">Utpala Cafe</span>
+                <span class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5">Ama Bakery</span>
+                <span class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5">Ama Coffee School</span>
+                <span class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5">Mandal</span>
+                <span class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5">Best</span>
+            </div>
+        </section>
+
+        <!-- ARTICLES / BLOG SECTION -->
+        <section id="articles" class="space-y-6">
+            <div class="space-y-1">
+                <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Writing</p>
+                <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Articles & Insights</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="apple-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-semibold text-apple-blue">Design Principles</span>
+                        <h3 class="font-semibold text-base">7 Core Principles of Effective Design</h3>
+                        <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                            How hierarchy, contrast, balance, and alignment transform ordinary visual layouts into clear messages.
+                        </p>
+                    </div>
+                    <span class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext font-medium">5 min read</span>
+                </div>
+
+                <div class="apple-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-semibold text-purple-500">Marketing</span>
+                        <h3 class="font-semibold text-base">Why Your Business Needs Graphic Design</h3>
+                        <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                            Consistent visual identity builds trust faster than long promotional copy in competitive markets.
+                        </p>
+                    </div>
+                    <span class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext font-medium">4 min read</span>
+                </div>
+
+                <div class="apple-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-semibold text-emerald-500">Tech & Future</span>
+                        <h3 class="font-semibold text-base">AI in Design: The Next 10 Years</h3>
+                        <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">
+                            Exploring how artificial intelligence tools enhance designer workflows while keeping human intent at the core.
+                        </p>
+                    </div>
+                    <span class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext font-medium">6 min read</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="space-y-6">
+            <div class="space-y-1">
+                <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Endorsements</p>
+                <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Client Words</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="apple-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed italic">
+                        "Tenzin's creativity and quick adaptability are remarkable. He designed brand collateral for us that stood out immediately."
+                    </p>
+                    <div>
+                        <p class="text-xs font-semibold text-apple-lightText dark:text-white">Sahil Acharya</p>
+                        <p class="text-[11px] text-apple-lightSubtext dark:text-apple-darkSubtext">Collaborator</p>
+                    </div>
+                </div>
+
+                <div class="apple-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed italic">
+                        "His unique ability to fuse Computer Science background with digital marketing strategies helped boost our brand engagement seamlessly."
+                    </p>
+                    <div>
+                        <p class="text-xs font-semibold text-apple-lightText dark:text-white">Rojina Kdakhari</p>
+                        <p class="text-[11px] text-apple-lightSubtext dark:text-apple-darkSubtext">Marketing Lead</p>
+                    </div>
+                </div>
+
+                <div class="apple-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                    <p class="text-xs sm:text-sm text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed italic">
+                        "Exceptional communication, clean aesthetic, and prompt execution. Working with Tenzin on event visuals was effortless."
+                    </p>
+                    <div>
+                        <p class="text-xs font-semibold text-apple-lightText dark:text-white">Emily Evans</p>
+                        <p class="text-[11px] text-apple-lightSubtext dark:text-apple-darkSubtext">Event Organizer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="space-y-6">
+            <div class="space-y-1">
+                <p class="text-xs font-semibold text-apple-blue uppercase tracking-wider">Connect</p>
+                <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Get in Touch</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Direct Information Cards -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="apple-card p-6 rounded-3xl space-y-2">
+                        <span class="text-[11px] font-semibold text-apple-lightSubtext dark:text-apple-darkSubtext uppercase">Phone / WhatsApp</span>
+                        <div class="flex items-center justify-between">
+                            <span id="phoneNum" class="text-sm font-semibold">+977 9762285689</span>
+                            <button id="copyPhoneBtn" class="px-3 py-1 rounded-full bg-apple-blue/10 text-apple-blue text-xs font-semibold hover:bg-apple-blue hover:text-white transition">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="apple-card p-6 rounded-3xl space-y-2">
+                        <span class="text-[11px] font-semibold text-apple-lightSubtext dark:text-apple-darkSubtext uppercase">Email Address</span>
+                        <div class="flex items-center justify-between">
+                            <span id="emailAddr" class="text-xs sm:text-sm font-semibold truncate">email@tenzindundul.com.np</span>
+                            <button id="copyEmailBtn" class="px-3 py-1 rounded-full bg-apple-blue/10 text-apple-blue text-xs font-semibold hover:bg-apple-blue hover:text-white transition">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="apple-card p-6 rounded-3xl space-y-2">
+                        <span class="text-[11px] font-semibold text-apple-lightSubtext dark:text-apple-darkSubtext uppercase">Location</span>
+                        <p class="text-sm font-semibold">Boudha, Kathmandu, Nepal</p>
+                        <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">Origin: Dolpo, Nepal</p>
+                    </div>
+                </div>
+
+                <!-- Minimal Apple Form -->
+                <div class="lg:col-span-7 apple-card p-6 sm:p-8 rounded-3xl">
+                    <form id="appleContactForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">Name</label>
+                                <input type="text" required placeholder="Your Name" class="w-full px-4 py-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent focus:border-apple-blue focus:outline-none text-xs text-apple-lightText dark:text-white transition">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">Email or Phone</label>
+                                <input type="text" required placeholder="Contact Info" class="w-full px-4 py-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent focus:border-apple-blue focus:outline-none text-xs text-apple-lightText dark:text-white transition">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">Project Interest</label>
+                            <select class="w-full px-4 py-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent focus:border-apple-blue focus:outline-none text-xs text-apple-lightText dark:text-white transition">
+                                <option>Graphic Design & Print Media</option>
+                                <option>Social Media Management</option>
+                                <option>Content Strategy</option>
+                                <option>Digital Marketing Consultation</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">Message</label>
+                            <textarea rows="3" required placeholder="Brief description of your goals..." class="w-full px-4 py-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent focus:border-apple-blue focus:outline-none text-xs text-apple-lightText dark:text-white transition resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-apple-blue hover:bg-apple-blueHover text-white text-xs font-semibold transition shadow-sm">
+                            Send Message
+                        </button>
+
+                        <div id="formSuccessMsg" class="hidden p-3 rounded-2xl text-center text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                            Thank you! Your message has been sent successfully.
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-apple-lightBorder dark:border-apple-darkBorder py-8 text-center text-xs text-apple-lightSubtext dark:text-apple-darkSubtext">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© 2026 Tenzin Dundul. All rights reserved.</p>
+            <p class="flex items-center gap-1">
+                <span>Kathmandu & Dolpo, Nepal</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX / PROJECT MODAL -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-200">
+        <div class="apple-card w-full max-w-lg rounded-3xl p-6 relative border border-apple-lightBorder dark:border-apple-darkBorder shadow-2xl">
+            <button id="closeModalBtn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-apple-lightText dark:text-white hover:opacity-70 transition">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+            <div id="modalContent" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Persistent Dark / Light Theme Engine
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function applyTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                themeIcon.className = 'fa-solid fa-sun text-xs text-amber-400';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                themeIcon.className = 'fa-solid fa-moon text-xs text-slate-600';
+            }
+        }
+
+        // Initialize theme preference from localStorage or OS setting
+        const storedTheme = localStorage.getItem('appleTheme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDarkMode = storedTheme ? storedTheme === 'dark' : prefersDark;
+        applyTheme(isDarkMode);
+
+        themeToggleBtn.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            localStorage.setItem('appleTheme', isDarkMode ? 'dark' : 'light');
+            applyTheme(isDarkMode);
+        });
+
+        // 2. Portfolio Projects Data
+        const projects = [
+            {
+                id: '1',
+                title: 'Buddha Purnima Festive Visual',
+                category: 'Print Media',
+                image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=800&q=80',
+                description: 'Cultural design for flex banners and social posters across cafes in Boudha.',
+                tags: ['Festive', 'Print Flex', 'Photoshop']
+            },
+            {
+                id: '2',
+                title: 'Barista Class Intake Campaign',
+                category: 'Social Media',
+                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+                description: 'Promotional graphics created for Ama Coffee School barista enrollment.',
+                tags: ['Ama Coffee School', 'Social Ads', 'Branding']
+            },
+            {
+                id: '3',
+                title: 'Chhath Festival Poster',
+                category: 'Print Media',
+                image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80',
+                description: 'Traditional greeting visual tailored for high-reach social posts and banners.',
+                tags: ['Festive Poster', 'Illustrator']
+            },
+            {
+                id: '4',
+                title: 'CTF Cyber Security Event Design',
+                category: 'Branding',
+                image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+                description: 'Technical event poster for Texas College Capture The Flag competition.',
+                tags: ['Tech Event', 'Branding', 'Poster']
+            },
+            {
+                id: '5',
+                title: 'Jigri Creative Social Media',
+                category: 'Social Media',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+                description: 'Modern grid graphics and carousel content created for brand engagement.',
+                tags: ['Social Content', 'Canva', 'Grid']
+            },
+            {
+                id: '6',
+                title: 'Coffee Product Mockups & Menu',
+                category: 'Branding',
+                image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80',
+                description: 'Brand collateral and packaging designs for Utpala Cafe and Ama Bakery.',
+                tags: ['Mockups', 'Utpala Cafe', 'Ama Bakery']
+            }
+        ];
+
+        // Render Portfolio Cards
+        function renderPortfolio(filterCategory = 'all') {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+
+            const items = filterCategory === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === filterCategory);
+
+            items.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'apple-card rounded-3xl overflow-hidden flex flex-col justify-between group cursor-pointer';
+                card.onclick = () => openModal(p.id);
+                card.innerHTML = `
+                    <div class="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-[10px] font-semibold text-apple-blue uppercase">${p.category}</span>
+                        <h3 class="font-semibold text-sm text-apple-lightText dark:text-white group-hover:text-apple-blue transition">${p.title}</h3>
+                        <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext line-clamp-2">${p.description}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Modal / Lightbox Functions
+        function openModal(id) {
+            const item = projects.find(p => p.id === id);
+            if (!item) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-1">
+                    <span class="text-[10px] font-semibold text-apple-blue uppercase">${item.category}</span>
+                    <h3 class="text-lg font-semibold text-apple-lightText dark:text-white">${item.title}</h3>
+                    <p class="text-xs text-apple-lightSubtext dark:text-apple-darkSubtext leading-relaxed">${item.description}</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                    ${item.tags.map(t => `<span class="px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[11px] font-medium text-apple-lightSubtext dark:text-apple-darkSubtext">${t}</span>`).join('')}
+                </div>
+            `;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 200);
+        }
+
+        // Initialize DOM Event Handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPortfolio('all');
+
+            // Mobile Menu
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+            document.querySelectorAll('.mobile-link').forEach(l => {
+                l.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // Filter Buttons Logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-white', 'dark:bg-apple-darkCard', 'shadow-sm', 'text-apple-lightText', 'dark:text-white');
+                        b.classList.add('text-apple-lightSubtext', 'dark:text-apple-darkSubtext');
+                    });
+                    e.target.classList.add('bg-white', 'dark:bg-apple-darkCard', 'shadow-sm', 'text-apple-lightText', 'dark:text-white');
+                    renderPortfolio(e.target.getAttribute('data-filter'));
+                });
+            });
+
+            // Modal Close listener
+            document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+            document.getElementById('projectModal').addEventListener('click', (e) => {
+                if (e.target.id === 'projectModal') closeModal();
+            });
+
+            // Copy Phone Action
+            document.getElementById('copyPhoneBtn').addEventListener('click', () => {
+                const text = document.getElementById('phoneNum').innerText;
+                const temp = document.createElement('input');
+                temp.value = text;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+
+                const btn = document.getElementById('copyPhoneBtn');
+                btn.innerText = 'Copied';
+                setTimeout(() => btn.innerText = 'Copy', 2000);
+            });
+
+            // Copy Email Action
+            document.getElementById('copyEmailBtn').addEventListener('click', () => {
+                const text = document.getElementById('emailAddr').innerText;
+                const temp = document.createElement('input');
+                temp.value = text;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+
+                const btn = document.getElementById('copyEmailBtn');
+                btn.innerText = 'Copied';
+                setTimeout(() => btn.innerText = 'Copy', 2000);
+            });
+
+            // Form Submit Mock
+            document.getElementById('appleContactForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const msg = document.getElementById('formSuccessMsg');
+                msg.classList.remove('hidden');
+                e.target.reset();
+                setTimeout(() => msg.classList.add('hidden'), 4000);
+            });
+        });
+    </script>
+</body>
+</html>
